@@ -139,8 +139,11 @@ class Detector(object):
         return self.UNKNOWN_LANG
 
     def get_probabilities(self):
-        if self.langprob is None:
-            self._detect_block()
+        try:
+            if self.langprob is None:
+                self._detect_block()
+        except:
+            return []
         return self._sort_probability(self.langprob)
 
     def _detect_block(self):
